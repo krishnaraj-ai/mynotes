@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "240910910108",
+    "project_id": "mynotes-47d4b",
+    "storage_bucket": "mynotes-47d4b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:240910910108:android:f7380b84a19cca3db3a359",
+        "android_client_info": {
+          "package_name": "com.aloha.mynotes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "240910910108-4snud0367ka44mifa5ii7pq2rgrgk0qb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGMNFVX1YEr6yPBhc_DlO7CAL-QA8W5AU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "240910910108-4snud0367ka44mifa5ii7pq2rgrgk0qb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "240910910108-grb613veh831sv97n45hsbosv5kmuev7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.aloha.mynotes"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
