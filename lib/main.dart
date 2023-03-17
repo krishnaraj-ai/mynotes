@@ -19,6 +19,7 @@ void main() {
       '/login/': (context) => const LoginView(),
       '/register/': (context) => const RegisterView(),
       '/verifyemail/': (context) => const VerifyEmailView(),
+      '/notes/': (context) => const NotesView(),
     },
   ));
 }
@@ -40,12 +41,12 @@ class HomePage extends StatelessWidget {
                 if (user.emailVerified) {
                   return const NotesView();
                 } else {
-                  //const VerifyEmailView();
+                  return const VerifyEmailView();
                   //return const LoginView();
-                  return const NotesView();
+                  //return const NotesView();
                 }
               } else {
-                return const NotesView();
+                return const LoginView();
               }
             //return const Text('Done');
             default:
@@ -77,16 +78,20 @@ class _NotesViewState extends State<NotesView> {
                 case MenuAction.logout:
                   final shouldLogout = await showLogOutDialog(context);
                   if (shouldLogout) {
+                    devtools.log("Signing out...");
                     await FirebaseAuth.instance.signOut();
-                    Navigator.of(context)
-                        .pushNamedAndRemoveUntil('/login/', (_) => false);
+                    devtools.log("Signed out");
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                      '/login/',
+                      (_) => false,
+                    );
                   }
-                  break;
+                //break;
               }
             },
             itemBuilder: (context) {
-              return [
-                const PopupMenuItem<MenuAction>(
+              return const [
+                PopupMenuItem<MenuAction>(
                   value: MenuAction.logout,
                   child: Text('Log out'),
                 ),
@@ -104,8 +109,8 @@ Future<bool> showLogOutDialog(BuildContext context) {
     context: context,
     builder: (context) {
       return AlertDialog(
-        title: const Text('Sign Out'),
-        content: const Text('Are you sure you want to sign out?'),
+        title: const Text('Log Out'),
+        content: const Text('Are you sure you want to log out?'),
         actions: [
           TextButton(
               onPressed: () {
