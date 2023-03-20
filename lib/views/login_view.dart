@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'dart:developer' as devtools show log;
-
 import 'package:mynotes/constants/routes.dart';
+
+import '../utilities/show_error_dialog.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -65,19 +65,30 @@ class _LoginViewState extends State<LoginView> {
                     email: email,
                     password: password,
                   );
-                  devtools.log(userCredential.toString());
+                  //devtools.log(userCredential.toString());
                   Navigator.of(context)
                       .pushNamedAndRemoveUntil(notesRoute, (route) => false);
                 } on FirebaseAuthException catch (e) {
                   if (e.code == 'user-not-found') {
-                    devtools.log('User not found');
-                  } else if (e.code == 'weak-password') {
-                    devtools.log('Weak password');
+                    await showErrorDialog(
+                      context,
+                      'User not found',
+                    );
+                  } else if (e.code == 'wrong-password') {
+                    await showErrorDialog(
+                      context,
+                      'Password is incorrect',
+                    );
                   } else if (e.code == 'invalid-email') {
-                    devtools.log('This e-mail id is invalid');
+                    await showErrorDialog(
+                      context,
+                      'Invalid email id',
+                    );
                   } else {
-                    devtools.log('Error occured');
-                    devtools.log(e.code);
+                    await showErrorDialog(
+                      context,
+                      'Error: ${e.code}',
+                    );
                   }
                 }
               },
